@@ -1,0 +1,50 @@
+
+
+    <!-- toolbar -->
+    <div>
+        <md-toolbar class="main-tool-bar md-whiteframe-1dp" ng-controller="headerCtrl as vm">
+            <div layout="row" flex>
+                <div flex="70" flex-sm="60" flex-xs="50">
+                    <div class="sidebar-toggle" hide-gt-sm>
+                        <md-button class="md-icon-button" aria-label="More" ng-click="vm.openLeftMenu()">
+                            <i class="fa fa-bars"></i>
+                        </md-button>
+                    </div>
+                   <!-- <div class="breadcrumb">
+                        <div ncy-breadcrumb></div>
+                    </div>-->
+                </div>
+                <div flex="30" flex-sm="40" flex-xs="50">
+                    <div class="profile-menu">
+                        <md-menu>
+                            <md-button aria-label = "Sample Menu" class = "md-button"
+                                       ng-click = "$mdOpenMenu($event)">
+                                <div layout="row">
+                                    <div class="profile-name">
+                                        <p class="text-ellipsis">Md. Imrul Islam</p>
+                                    </div>
+                                    <div class="profile-icon">
+                                        <i class="fa fa-sort-desc" aria-hidden="true"></i>
+                                    </div>
+                                </div>
+                            </md-button>
+                            <md-menu-content width="4">
+                                <md-menu-item>
+                                    <md-button>
+                                        Profile
+                                    </md-button>
+                                </md-menu-item>
+                                <md-menu-divider></md-menu-divider>
+                                <md-menu-item>
+                                    <md-button>Logout</md-button>
+                                </md-menu-item>
+                            </md-menu-content>
+                        </md-menu>
+                    </div>
+                </div>
+            </div>
+        </md-toolbar>
+    </div>
+
+
+    <!-- End toolbar -->
