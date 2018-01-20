@@ -37,8 +37,6 @@ const logPassedTest = function (testName, data) {
     }
 }
 
-let test7 = 'CRUD Campaign';
-let campaignIdToDelete;
 
 function createCampaign(camp) {
     var defered = Q.defer();
@@ -48,22 +46,20 @@ function createCampaign(camp) {
             {
                 [Campaign.Fields.name]: camp.name,
                 [Campaign.Fields.status]: Campaign.Status.paused,
-                [Campaign.Fields.objective]: Campaign.Objective.page_likes
+                [Campaign.Fields.objective]:camp.objective|| Campaign.Objective.page_likes
             }
         )
         .then(function (campaign) {
-            logPassedTest(test7 + '-Create:Pass', campaign);
-            campaignIdToDelete = campaign.id;
-            return new Campaign(campaign.id)
-                .read([Campaign.Fields.id, Campaign.Fields.name, Campaign.Fields.objective]).then(function (campaign) {
-                    defered.resolve(campaign);
-                });
+            console.log(Campaign.Objective);
+         defered.resolve(campaign);
+        }, function (err) {
+            defered.reject(err);
         })
 
     return defered.promise;
 }
 
-function getCampaign(campaignId) {
+function getCampaign(campaignId, limit) {
     let deferred = Q.defer();
     if(campaignId){
         let campaign = new Campaign(campaignId);
@@ -74,7 +70,7 @@ function getCampaign(campaignId) {
         })
     } else {
         const campaignFields =[Campaign.Fields.id, Campaign.Fields.name, Campaign.Fields.objective];
-        account.getCampaigns(campaignFields, { limit: 5 })
+        account.getCampaigns(campaignFields, { limit: limit })
             .then(function(campaigns) {
                 deferred.resolve(campaigns);
             }, function (err) {
