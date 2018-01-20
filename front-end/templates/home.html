@@ -1,26 +1,40 @@
-<h1>{{title}}</h1>
+<h3>Add Campaign</h3><br>
+<form>
+	<md-input-container class="md-block">
+		<label>Name</label>
+		<input md-maxlength="30" required name="name"
+			   ng-model="newAd.name">
+	</md-input-container>
+	<md-input-container class="md-block">
+		<label>Objective</label>
+		<input md-maxlength="30" required name="objective"
+			   ng-model="newAd.objective">
+	</md-input-container>
+	<md-button ng-click="onSubmit()" type="submit">Submit</md-button>
+</form>
+<br>
+
+<h3>All Campaigns</h3>
+<i style="cursor: pointer" ng-click="loadCampaigns()" class="material-icons">cached</i>
 <div class="">
 
-    <div layout-gt-sm="row">
-        <div flex-gt-sm="50">
-            <div>
-                <md-list flex>
-                    <md-list-item>
-                       <md-button class="md-whiteframe-1dp">
-                           <div>
-                               <h1>Md. Imrul Islam</h1>
-                           </div>
-                       </md-button>
-                    </md-list-item>
-                    <md-list-item>
-                       <md-button class="md-whiteframe-1dp">
-                           <div>
-                               <h1>Md. Imrul Islam</h1>
-                           </div>
-                       </md-button>
-                    </md-list-item>
-                </md-list>
-            </div>
-        </div>
-    </div>
+	<div layout="row" layout-wrap>
+		<div ng-repeat="ad in response.data.data" flex="50">
+			<md-card>
+				<md-card-title>
+					<md-card-title-text>
+						<span class="md-headline">{{ ad.name }}</span>
+						<span class="md-subhead">{{ ad.objective }}</span>
+					</md-card-title-text>
+					<md-card-title-media>
+						<div class="md-media-sm card-media"></div>
+					</md-card-title-media>
+				</md-card-title>
+				<md-card-actions layout="row" layout-align="end center">
+					<md-button>Details</md-button>
+					<md-button>Delete</md-button>
+				</md-card-actions>
+			</md-card>
+		</div>
+	</div>
 </div>
